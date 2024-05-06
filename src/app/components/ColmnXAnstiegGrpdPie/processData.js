@@ -4,7 +4,7 @@ export const processData = (data) => {
     { name: "100X - 999.9X", range: [100, 999.9], color: "lightgreen" },
     { name: "40X - 99X", range: [40, 99], color: "darkgreen" },
     { name: "21X - 39X", range: [21, 39], color: "blue" },
-    { name: "17.1X - 20.9X", range: [17.1, 20.9], color: "lightred" },
+    { name: "17.1X - 20.9X", range: [17.1, 20.9], color: "pink" },
     { name: "0X - 17X", range: [0, 17], color: "darkred" },
   ];
 
