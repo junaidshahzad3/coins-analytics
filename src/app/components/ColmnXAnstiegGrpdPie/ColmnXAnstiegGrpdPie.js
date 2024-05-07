@@ -1,8 +1,11 @@
 "use client";
 import * as d3 from "d3";
 import { useEffect, useRef } from "react";
+import { processData } from "./processData";
 
-const ColmnXAnstiegGrpdPie = ({ data, sin }) => {
+const ColmnXAnstiegGrpdPie = ({  sin }) => {
+
+  const data = processData(sin);
   console.log("data", sin);
   console.log("processed data", data);
   const ref = useRef();

@@ -1,10 +1,10 @@
 import React from "react";
 import ColmnXAnstiegGrpdPie from "./ColmnXAnstiegGrpdPie";
-import { processData } from "./processData";
+import Select from "react-select";
+import { getExcelData } from "@/app/api/readExcel/getExcelData";
 
-export default async function ColmnXAnstiegGrpdPieIndex({ data }) {
-  console.log("data", data);
-  const processedData = processData(data);
+export default async function ColmnXAnstiegGrpdPieIndex() {
+  const data = await getExcelData();
 
   // const getCategory = (x) => {
   //   if (x >= 1000) {
@@ -24,9 +24,15 @@ export default async function ColmnXAnstiegGrpdPieIndex({ data }) {
 
   return (
     <>
-      {data?.length > 0 && (
-        <ColmnXAnstiegGrpdPie data={processedData} sin={data} />
-      )}
+      {/* <Select
+            closeMenuOnSelect={false}
+            isMulti
+            options={optionsArray}
+            value={selectedValues}
+            className="custom-input-style"
+            onChange={(e) => setSelectedValues(e)}
+          /> */}
+      {data?.length > 0 && <ColmnXAnstiegGrpdPie sin={data} />}
     </>
   );
 }
