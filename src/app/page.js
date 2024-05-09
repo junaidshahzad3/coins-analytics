@@ -1,11 +1,11 @@
-import ColmnXAnstiegGrpdPieIndex from "./components/ColmnXAnstiegGrpdPie";
+import MainComp from "@/components/MainComp/MainComp";
 
 const Home = async () => {
   
 
   return (
-    <main className="flex min-h-screen items-center justify-center p-24">
-      <ColmnXAnstiegGrpdPieIndex />
+    <main className="flex min-h-screen justify-center">
+      <MainComp />
     </main>
   );
 };
