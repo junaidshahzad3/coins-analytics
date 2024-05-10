@@ -7,7 +7,7 @@ import { processData } from "./processData";
 const PieChart = ({ filteredData }) => {
   const ref = useRef();
   const [processedData, setProcessedData] = useState(studyData || []);
-
+  console.log("processedData", processedData);
   //Change the charts data when the any filter is applied filter
   useEffect(() => {
     setProcessedData(processData(filteredData));

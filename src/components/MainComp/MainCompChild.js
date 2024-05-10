@@ -8,19 +8,78 @@ import PrcntDwnFlGrpd from "../PrcntDwnFlGrpd/PrcntDwnFlGrpd";
 import PrcntDwnFlGrpdCmprdBTC from "../PrcntDwnFlCmprdBTC/PrcntDwnFlGrpdCmprdBTC";
 import XAntiegByCoins from "../XAntiegByCoins/XAntiegByCoins";
 import TopByCoins from "../TopByCoins/TopByCoins";
+import PrcntDwnFlScatter from "../PrcntDwnFlScatter/PrcntDwnFlScatter";
+import MCLowTop from "../MCLowTop/MCLowTop";
+import MCTopLow from "../MCTopLow/MCTopLow";
+import RankTopLow from "../RankTopLow/RankTopLow";
+import RankLowTop from "../RankLowTop/RankLowTop";
+import PrcntDwnFlCombined from "../PrcntDwnFlCombined/PrcntDwnFlCombined";
 
-const MainCompChild = ({ data }) => {
-  const [filteredData, setFilteredData] = useState(studyData || []);
-  console.log("data", data);
+const MainCompChild = () => {
+  const [selectedCoins, setSelectedCoins] = useState([]);
+  const [selectedMCGruppes, setSelectedMCGruppes] = useState([]);
+  const [selectedHauptKategories, setSelectedHauptKategories] = useState([]);
+
   return (
     <div className="w-full max-w-[1600px] h-full flex flex-col px-6">
-      <Filters setFilteredData={setFilteredData} />
-      <XAnstiegGrpd filteredData={filteredData} />
-      <XAnstiegCmprdBTC filteredData={filteredData} />
-      <PrcntDwnFlGrpd filteredData={filteredData} />
-      <PrcntDwnFlGrpdCmprdBTC filteredData={filteredData} />
-      <XAntiegByCoins filteredData={filteredData} />
-      <TopByCoins filteredData={filteredData} />
+      <Filters
+        selectedCoins={selectedCoins}
+        setSelectedCoins={setSelectedCoins}
+        selectedMCGruppes={selectedMCGruppes}
+        setSelectedMCGruppes={setSelectedMCGruppes}
+        selectedHauptKategories={selectedHauptKategories}
+        setSelectedHauptKategories={setSelectedHauptKategories}
+      />
+      <XAnstiegGrpd
+        selectedMCGruppes={selectedMCGruppes}
+        selectedHauptKategories={selectedHauptKategories}
+      />
+      <XAnstiegCmprdBTC />
+      <PrcntDwnFlGrpd
+        selectedMCGruppes={selectedMCGruppes}
+        selectedHauptKategories={selectedHauptKategories}
+      />
+      <PrcntDwnFlGrpdCmprdBTC />
+      <XAntiegByCoins
+        selectedCoins={selectedCoins}
+        selectedMCGruppes={selectedMCGruppes}
+        selectedHauptKategories={selectedHauptKategories}
+      />
+      <TopByCoins
+        selectedCoins={selectedCoins}
+        selectedMCGruppes={selectedMCGruppes}
+        selectedHauptKategories={selectedHauptKategories}
+      />
+      <PrcntDwnFlScatter
+        selectedCoins={selectedCoins}
+        selectedMCGruppes={selectedMCGruppes}
+        selectedHauptKategories={selectedHauptKategories}
+      />
+      <MCLowTop
+        selectedCoins={selectedCoins}
+        selectedMCGruppes={selectedMCGruppes}
+        selectedHauptKategories={selectedHauptKategories}
+      />
+      <RankLowTop
+        selectedCoins={selectedCoins}
+        selectedMCGruppes={selectedMCGruppes}
+        selectedHauptKategories={selectedHauptKategories}
+      />
+      <MCTopLow
+        selectedCoins={selectedCoins}
+        selectedMCGruppes={selectedMCGruppes}
+        selectedHauptKategories={selectedHauptKategories}
+      />
+      <RankTopLow
+        selectedCoins={selectedCoins}
+        selectedMCGruppes={selectedMCGruppes}
+        selectedHauptKategories={selectedHauptKategories}
+      />
+      {/* <PrcntDwnFlCombined
+        selectedCoins={selectedCoins}
+        selectedMCGruppes={selectedMCGruppes}
+        selectedHauptKategories={selectedHauptKategories}
+      /> */}
     </div>
   );
 };

@@ -7,7 +7,7 @@ export const processData = (data) => {
 
   // Count how many coins have a larger "X Anstieg" than Bitcoin
   const countBiggerThanBTC = data.filter(
-    (coin) => coin["X Anstieg"] > btcXAnstieg
+    (coin) => Number(coin["X Anstieg"]) > Number(btcXAnstieg)
   ).length;
 
   // Total number of coins

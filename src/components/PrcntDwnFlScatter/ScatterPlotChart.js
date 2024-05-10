@@ -19,13 +19,16 @@ const ScatterPlotChart = ({ filteredData }) => {
     // Clear SVG
     svg.selectAll("*").remove();
 
-    const title = "Coin: X Anstieg";
+    const title = "Percentage of Downfall_1";
 
-    const yValue = (d) => d["X Anstieg"];
-    const yAxisLabel = "X Anstieg";
+    const yValue = (d) => Number(d["Percentage of Downfall_1"].slice(0, -1)); // convert "-99%" string to a usable number
+    const yAxisLabel = "Percentage of Downfall_1";
 
-    const xValue = (d) => d["ID"];
-    const xAxisLabel = "ID";
+    const xValue = (d) => {
+      // Convert the field to a Date object
+      return new Date(d["Date of Lowest Low After"]);
+    };
+    const xAxisLabel = "Date of Lowest Low After";
 
     const xScale = d3
       .scaleLinear()
@@ -35,17 +38,26 @@ const ScatterPlotChart = ({ filteredData }) => {
 
     const yScale = d3
       .scaleLinear()
-      .domain(d3.extent(filteredData, yValue))
-      .range([innerHeight, 0])
-      .nice();
+      .domain([-100, 0]) // fixed range from 0 to -100
+      .range([innerHeight, 0]);
 
     const g = svg
       .append("g")
       .attr("transform", `translate(${margin.left},${margin.top})`);
 
-    const xAxis = d3.axisBottom(xScale).tickSize(-innerHeight).tickPadding(15);
+    const dateFormat = d3.timeFormat("%Y-%m-%d");
 
-    const yAxis = d3.axisLeft(yScale).tickSize(-innerWidth).tickPadding(10);
+    const xAxis = d3
+      .axisBottom(xScale)
+      .tickSize(-innerHeight)
+      .tickFormat(dateFormat)
+      .tickPadding(15);
+
+    const yAxis = d3
+      .axisLeft(yScale)
+      .tickValues(d3.range(0, -110, -10)) // custom tick values
+      .tickSize(-innerWidth)
+      .tickPadding(10);
 
     const yAxisG = g.append("g").call(yAxis);
     yAxisG.selectAll(".domain").remove();
@@ -73,6 +85,7 @@ const ScatterPlotChart = ({ filteredData }) => {
       .attr("y", 75)
       .attr("x", innerWidth / 2)
       .attr("fill", "black")
+
       .text(xAxisLabel);
 
     g.selectAll("circle")

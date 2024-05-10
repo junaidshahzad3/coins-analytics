@@ -3,11 +3,13 @@ import { Colors } from "./Colors";
 export const processData = (data) => {
   // Find Bitcoin's "X Anstieg"
   const btcData = data.find((coin) => coin.Symbol === "BTC");
-  const btcPrcntDownfall = Number(btcData["Percentage of Downfall_1"]);
+  const btcPrcntDownfall = Number(
+    btcData["Percentage of Downfall_1"].slice(0, -1)
+  );
 
   // Count how many coins have a larger "X Anstieg" than Bitcoin
   const countBiggerThanBTC = data.filter((coin) => {
-    const temp = Number(coin["Percentage of Downfall_1"]);
+    const temp = Number(coin["Percentage of Downfall_1"].slice(0, -1));
     return temp > btcPrcntDownfall;
   }).length;
 

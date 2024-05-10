@@ -5,7 +5,7 @@ import { applyHauptFilter } from "@/utils/applyHauptFilter";
 import { applyMCGruppeFilter } from "@/utils/applyMCGruppeFilter";
 import { applyCoinsFilter } from "@/utils/applyCoinsFilter";
 
-const XAntiegByCoins = ({
+const PrcntDwnFlScatter = ({
   selectedCoins,
   selectedMCGruppes,
   selectedHauptKategories,
@@ -27,7 +27,7 @@ const XAntiegByCoins = ({
   return (
     <div>
       <div className="text-3xl text-center">
-        X Anstieg comparison between Bitcoin BTC and Other Coins
+        Percentage of downfall by Coins
       </div>
       <div className="flex items-center gap-3">
         <div className="flex flex-col items-center w-full">
@@ -39,4 +39,4 @@ const XAntiegByCoins = ({
   );
 };
 
-export default XAntiegByCoins;
+export default PrcntDwnFlScatter;

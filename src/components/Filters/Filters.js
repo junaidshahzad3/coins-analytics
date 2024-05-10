@@ -6,28 +6,31 @@ import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import studyData from "../../data/Study.json";
 
-const Filters = ({  setFilteredData }) => {
+const Filters = ({
+  selectedCoins,
+  setSelectedCoins,
+  selectedMCGruppes,
+  setSelectedMCGruppes,
+  selectedHauptKategories,
+  setSelectedHauptKategories,
+}) => {
+  const [hauptKategorieOptions, setHauptKategorieOptions] = useState(
+    async () => {
+      const temp = await getUniqueCategories(studyData);
+      return temp || [];
+    }
+  );
+  const [MCGruppesOptions, setMCGruppesOptions] = useState(async () => {
+    const temp = await getUniqueMCGruppes(studyData);
+    return temp || [];
+  });
+  const [coinsOptions, setCoinsOptions] = useState(async () => {
+    const temp = await getUniqueCoins(studyData);
+    return temp || [];
+  });
 
-    const [selectedHauptKategories, setSelectedHauptKategories] = useState([]);
-    const [hauptKategorieOptions, setHauptKategorieOptions] = useState(
-      async () => {
-        const temp = await getUniqueCategories(studyData);
-        return temp || [];
-      }
-    );
-    const [selectedMCGruppes, setSelectedMCGruppes] = useState([]);
-    const [MCGruppesOptions, setMCGruppesOptions] = useState(async () => {
-      const temp = await getUniqueMCGruppes(studyData);
-      return temp || [];
-    });
-    const [selectedCoins, setSelectedCoins] = useState([]);
-    const [coinsOptions, setCoinsOptions] = useState(async () => {
-      const temp = await getUniqueCoins(studyData);
-      return temp || [];
-    });
-  
-   //set the unique categories to the HauptKategorieOptions and MC Gruppe state
-   useEffect(() => {
+  //set the unique categories to the HauptKategorieOptions and MC Gruppe state
+  useEffect(() => {
     const fetchHauptKategorieData = async () => {
       const temp = await getUniqueCategories(studyData);
       setHauptKategorieOptions(temp); // Set unique Select options
@@ -47,32 +50,7 @@ const Filters = ({  setFilteredData }) => {
     fetchCoinsData(); // Fetch the data when the component mounts
   }, []);
 
-
-    //Change the filtered data whenever the filters are applied
-    useEffect(() => {
-        const hauptKategoriesValues = selectedHauptKategories.map(
-          (option) => option.value
-        );
-        const mcGruppesValues = selectedMCGruppes.map((option) => option.value);
-        const coinsValues = selectedCoins.map((option) => option.value);
-    
-        const tempFilteredData = studyData.filter((item) => {
-          const matchesHauptKategorie =
-            hauptKategoriesValues.length === 0 ||
-            hauptKategoriesValues.includes(item["Haupt-Kategorie"]);
-          const matchesMCGruppe =
-            mcGruppesValues.length === 0 ||
-            mcGruppesValues.includes(item["MC Gruppe"]);
-          const matchesCoins =
-            coinsValues.length === 0 || coinsValues.includes(item["Coin"]);
-          return matchesHauptKategorie && matchesMCGruppe && matchesCoins; // Both conditions must be true
-        });
-    
-        setFilteredData(tempFilteredData);
-      }, [selectedHauptKategories, selectedMCGruppes, selectedCoins]);
-    
-
-    return (
+  return (
     <div className="input-group w-full flex gap-5 sticky top-0 bg-white h-20 items-center">
       <div className="input-container w-full">
         <label htmlFor="hauptkategories" className="text-black">

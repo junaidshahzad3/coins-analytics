@@ -203,7 +203,7 @@ export const processData = (data, filter) => {
     filter === "5" ? categoriesWith5Diff : categoriesWith10Diff;
 
   for (const item of data) {
-    const downfall = Number(item["Percentage of Downfall_1"]);
+    const downfall = Number(item["Percentage of Downfall_1"].slice(0, -1));
     const category = categories.find(
       (cat) => downfall >= cat.range[0] && downfall <= cat.range[1]
     );
