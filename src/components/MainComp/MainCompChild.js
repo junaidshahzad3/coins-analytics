@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import studyData from "../../data/Study.json";
 import Filters from "../Filters/Filters";
 import XAnstiegGrpd from "../XAnstiegGrpd/XAnstiegGrpd";
 import XAnstiegCmprdBTC from "../XAnstiegCmprdBTC/XAnstiegCmprdBTC";
@@ -21,7 +20,7 @@ const MainCompChild = () => {
   const [selectedHauptKategories, setSelectedHauptKategories] = useState([]);
 
   return (
-    <div className="w-full max-w-[1600px] h-full flex flex-col px-6">
+    <div className="w-full h-full flex flex-col px-6">
       <Filters
         selectedCoins={selectedCoins}
         setSelectedCoins={setSelectedCoins}
@@ -55,6 +54,11 @@ const MainCompChild = () => {
         selectedMCGruppes={selectedMCGruppes}
         selectedHauptKategories={selectedHauptKategories}
       />
+      <PrcntDwnFlCombined
+        selectedCoins={selectedCoins}
+        selectedMCGruppes={selectedMCGruppes}
+        selectedHauptKategories={selectedHauptKategories}
+      />
       <MCLowTop
         selectedCoins={selectedCoins}
         selectedMCGruppes={selectedMCGruppes}
@@ -75,11 +79,6 @@ const MainCompChild = () => {
         selectedMCGruppes={selectedMCGruppes}
         selectedHauptKategories={selectedHauptKategories}
       />
-      {/* <PrcntDwnFlCombined
-        selectedCoins={selectedCoins}
-        selectedMCGruppes={selectedMCGruppes}
-        selectedHauptKategories={selectedHauptKategories}
-      /> */}
     </div>
   );
 };

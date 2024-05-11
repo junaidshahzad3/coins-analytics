@@ -34,8 +34,9 @@ export async function GET(req, res) {
     });
 
     // Fix dates in the data
-    const fixedData = data.map((row) => {
+    const fixedData = data.map((row, index) => {
       const newRow = { ...row };
+
       Object.keys(newRow).forEach((key) => {
         if (
           typeof newRow[key] === "number" &&
@@ -45,7 +46,7 @@ export async function GET(req, res) {
           newRow[key] = excelSerialDateToJSDate(newRow[key]).toISOString();
         }
       });
-      return newRow;
+      return { ...newRow, index: index };
     });
 
     // Path for the output JSON file

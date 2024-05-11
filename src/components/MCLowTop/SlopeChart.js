@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
 
-const SlopeChart = ({ filteredData, selectedCoins }) => {
+const SlopeChart = ({ filteredData }) => {
   const svgRef = useRef(null);
   const svgWidth = 800;
   const svgHeight = 500;
@@ -39,8 +39,8 @@ const SlopeChart = ({ filteredData, selectedCoins }) => {
       .append("g")
       .attr("transform", `translate(${margin.left},${margin.top})`);
 
-    const xAxis = d3.axisBottom(xScale);
-    const yAxis = d3.axisLeft(yScale);
+    const xAxis = d3.axisBottom(xScale).tickPadding(60);
+    const yAxis = d3.axisLeft(yScale).tickPadding(60);
 
     g.append("g").call(yAxis);
     g.append("g").call(xAxis).attr("transform", `translate(0,${innerHeight})`);
@@ -57,13 +57,14 @@ const SlopeChart = ({ filteredData, selectedCoins }) => {
 
       // Add coin labels at both ends of the line
       g.append("text")
-        .attr("x", xScale("Lowest Low Before"))
+        .attr("x", xScale("Lowest Low Before") + 100)
         .attr("y", yScale(Number(d["MC at Lowest Low Before"])) - 5) // slightly above the point
         .attr("text-anchor", "end")
+
         .text(d["Coinname + Ticker"]);
 
       g.append("text")
-        .attr("x", xScale("Highest High"))
+        .attr("x", xScale("Highest High") + 100)
         .attr("y", yScale(Number(d["MC at Highest High"])) - 5) // slightly above the point
         .attr("text-anchor", "start")
         .text(d["Coinname + Ticker"]);

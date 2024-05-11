@@ -5,7 +5,7 @@ export async function getExcelData() {
       const jsonData = await response.json();
       return jsonData;
     } else {
-      console.error("Failed to fetch data");
+      console.error("Failed to fetch data from Excel");
     }
   } catch (error) {
     console.error(error);

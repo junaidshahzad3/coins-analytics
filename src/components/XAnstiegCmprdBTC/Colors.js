@@ -1,4 +1,4 @@
 export const Colors = [
-  { color: "green", name: "X Anstieg < Bitcoin" },
-  { color: "red", name: "X Anstieg > Bitcoin" },
+  { color: "#A3CD83", name: "X Anstieg < Bitcoin" },
+  { color: "#D87A68", name: "X Anstieg > Bitcoin" },
 ];

@@ -39,8 +39,8 @@ const SlopeChart = ({ filteredData }) => {
       .append("g")
       .attr("transform", `translate(${margin.left},${margin.top})`);
 
-    const xAxis = d3.axisBottom(xScale);
-    const yAxis = d3.axisLeft(yScale);
+    const xAxis = d3.axisBottom(xScale).tickPadding(60);
+    const yAxis = d3.axisLeft(yScale).tickPadding(60);
 
     g.append("g").call(yAxis);
     g.append("g").call(xAxis).attr("transform", `translate(0,${innerHeight})`);

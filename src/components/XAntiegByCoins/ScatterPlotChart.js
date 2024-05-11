@@ -3,11 +3,13 @@ import * as d3 from "d3";
 
 const ScatterPlotChart = ({ filteredData }) => {
   const svgRef = useRef(null);
-  const svgWidth = 800;
-  const svgHeight = 500;
+  const svgWidth = 1200;
+  const svgHeight = 800;
+  const margin = { top: 60, right: 40, bottom: 88, left: 150 };
+  const graphWidth = svgWidth - margin.left - margin.right;
+  const graphHeight = svgHeight - margin.top - margin.bottom;
 
   useEffect(() => {
-    const margin = { top: 60, right: 40, bottom: 88, left: 150 };
     const innerWidth = svgWidth - margin.left - margin.right;
     const innerHeight = svgHeight - margin.top - margin.bottom;
 
@@ -19,13 +21,36 @@ const ScatterPlotChart = ({ filteredData }) => {
     // Clear SVG
     svg.selectAll("*").remove();
 
+    const gradient = svg
+      .append("defs")
+      .append("linearGradient")
+      .attr("id", "backgroundGradient")
+      .attr("x1", "0%")
+      .attr("x2", "0%")
+      .attr("y1", "0%")
+      .attr("y2", "100%");
+
+    gradient.append("stop").attr("offset", "0%").attr("stop-color", "yellow");
+
+    gradient.append("stop").attr("offset", "90%").attr("stop-color", "green");
+
+    gradient.append("stop").attr("offset", "100%").attr("stop-color", "red");
+
+    svg
+      .append("rect")
+      .attr("x", margin.left)
+      .attr("y", margin.top)
+      .attr("width", graphWidth)
+      .attr("height", graphHeight)
+      .style("fill", "url(#backgroundGradient)");
+
     const title = "Coin: X Anstieg";
 
     const yValue = (d) => d["X Anstieg"];
     const yAxisLabel = "X Anstieg";
 
-    const xValue = (d) => d["ID"];
-    const xAxisLabel = "ID";
+    const xValue = (d) => d["index"];
+    const xAxisLabel = "Count";
 
     const xScale = d3
       .scaleLinear()
@@ -45,7 +70,11 @@ const ScatterPlotChart = ({ filteredData }) => {
 
     const xAxis = d3.axisBottom(xScale).tickSize(-innerHeight).tickPadding(15);
 
-    const yAxis = d3.axisLeft(yScale).tickSize(-innerWidth).tickPadding(10);
+    const yAxis = d3
+      .axisLeft(yScale)
+      .tickPadding(60)
+      .tickSize(-innerWidth)
+      .tickPadding(10);
 
     const yAxisG = g.append("g").call(yAxis);
     yAxisG.selectAll(".domain").remove();

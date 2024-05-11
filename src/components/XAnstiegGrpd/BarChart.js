@@ -16,7 +16,7 @@ const BarChart = ({ filteredData }) => {
   useEffect(() => {
     const margin = { top: 30, right: 30, bottom: 40, left: 150 };
     const width = 800 - margin.left - margin.right;
-    const height = 400 - margin.top - margin.bottom;
+    const height = 300 - margin.top - margin.bottom;
 
     const svg = d3
       .select(ref.current)

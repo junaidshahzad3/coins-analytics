@@ -31,10 +31,7 @@ const MCLowTop = ({
       </div>
       <div className="flex items-center gap-3">
         <div className="flex flex-col items-center w-full">
-          <SlopeChart
-            filteredData={filteredData}
-            selectedCoins={selectedCoins}
-          />
+          <SlopeChart filteredData={filteredData} />
         </div>
         {/* <Legend /> */}
       </div>
