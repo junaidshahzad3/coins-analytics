@@ -20,7 +20,7 @@ const MainCompChild = () => {
   const [selectedHauptKategories, setSelectedHauptKategories] = useState([]);
 
   return (
-    <div className="w-full h-full flex flex-col px-6">
+    <div className="w-full h-full flex flex-col px-6 ">
       <Filters
         selectedCoins={selectedCoins}
         setSelectedCoins={setSelectedCoins}
