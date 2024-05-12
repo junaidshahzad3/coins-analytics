@@ -23,12 +23,18 @@ const PrcntDwnFlGrpd = ({ selectedHauptKategories, selectedMCGruppes }) => {
     <div>
       <div className="text-3xl text-center">Percentage of downfall grouped</div>
       <div className="flex items-center gap-3">
-        <div className="flex flex-col items-center w-full">
-          <PieChart filteredData={filteredData} filter="10" />
-          <BarChart filteredData={filteredData} filter="10" />
-          <BarChart filteredData={filteredData} filter="5" />
+        <div className="grid grid-cols-2 items-center w-full">
+          <div className="w-full flex justify-center h-[30rem]">
+            <PieChart filteredData={filteredData} filter="10" />
+          </div>
+          <div className="w-full flex justify-center h-[30rem]">
+            <BarChart filteredData={filteredData} filter="10" />
+          </div>
+          <div className="w-full flex justify-center h-[40rem] col-span-2">
+            <BarChart filteredData={filteredData} filter="5" />
+          </div>
         </div>
-        <Legend Colors={ColorsWith5Diff} />
+        {/* <Legend Colors={ColorsWith5Diff} /> */}
       </div>
     </div>
   );

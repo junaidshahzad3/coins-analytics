@@ -32,6 +32,7 @@ const MainCompChild = () => {
       <XAnstiegGrpd
         selectedMCGruppes={selectedMCGruppes}
         selectedHauptKategories={selectedHauptKategories}
+        selectedCoins={selectedCoins}
       />
       <XAnstiegCmprdBTC />
       <PrcntDwnFlGrpd

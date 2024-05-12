@@ -10,10 +10,10 @@ const PrcntDwnFlGrpdCmprdBTC = () => {
         Percentage of downfall of other coins compared to Bitcoin BTC
       </div>
       <div className="flex items-center gap-3">
-        <div className="flex flex-col items-center w-full">
+        <div className="flex flex-col items-center justify-center w-full h-[25rem]">
           <PieChart filteredData={studyData} />
         </div>
-        <Legend />
+        {/* <Legend /> */}
       </div>
     </div>
   );
