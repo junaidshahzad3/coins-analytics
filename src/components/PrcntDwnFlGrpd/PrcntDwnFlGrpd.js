@@ -2,13 +2,16 @@
 import React, { useEffect, useState } from "react";
 import PieChart from "./PieChart";
 import BarChart from "./BarChart";
-import Legend from "./Legend";
-import { ColorsWith5Diff } from "./Colors";
 import studyData from "../../data/Study.json";
 import { applyHauptFilter } from "@/utils/applyHauptFilter";
 import { applyMCGruppeFilter } from "@/utils/applyMCGruppeFilter";
+import { applyCoinsFilter } from "@/utils/applyCoinsFilter";
 
-const PrcntDwnFlGrpd = ({ selectedHauptKategories, selectedMCGruppes }) => {
+const PrcntDwnFlGrpd = ({
+  selectedMCGruppes,
+  selectedHauptKategories,
+  selectedCoins,
+}) => {
   const [filteredData, setFilteredData] = useState(studyData || []);
 
   useEffect(() => {
@@ -19,22 +22,27 @@ const PrcntDwnFlGrpd = ({ selectedHauptKategories, selectedMCGruppes }) => {
     applyMCGruppeFilter(setFilteredData, selectedMCGruppes);
   }, [selectedMCGruppes]);
 
+  useEffect(() => {
+    applyCoinsFilter(setFilteredData, selectedCoins);
+  }, [selectedCoins]);
+
   return (
     <div>
-      <div className="text-3xl text-center">Percentage of downfall grouped</div>
-      <div className="flex items-center gap-3">
-        <div className="grid grid-cols-2 items-center w-full">
-          <div className="w-full flex justify-center h-[30rem]">
+      <div className="text-3xl text-center mb-2">
+        Percentage of downfall grouped
+      </div>
+      <div className="flex flex-col justify-center items-center gap-3">
+        <div className="flex flex-col lg:flex-row gap-4 items-center w-full">
+          <div className="w-full flex justify-center h-[30rem] border border-slate-200 shadow-lg rounded-xl p-4">
             <PieChart filteredData={filteredData} filter="10" />
           </div>
-          <div className="w-full flex justify-center h-[30rem]">
+          <div className="w-full flex justify-center h-[30rem] border border-slate-200 shadow-lg rounded-xl p-4">
             <BarChart filteredData={filteredData} filter="10" />
           </div>
-          <div className="w-full flex justify-center h-[40rem] col-span-2">
-            <BarChart filteredData={filteredData} filter="5" />
-          </div>
         </div>
-        {/* <Legend Colors={ColorsWith5Diff} /> */}
+        <div className="w-full flex justify-center h-[40rem] border border-slate-200 shadow-lg rounded-xl p-4">
+          <BarChart filteredData={filteredData} filter="5" />
+        </div>
       </div>
     </div>
   );

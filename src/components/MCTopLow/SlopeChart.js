@@ -1,76 +1,68 @@
-import React, { useEffect, useRef } from "react";
-import * as d3 from "d3";
+import React, { useEffect, useState } from "react";
+import { Line } from "react-chartjs-2";
 
 const SlopeChart = ({ filteredData }) => {
-  const svgRef = useRef(null);
-  const svgWidth = 800;
-  const svgHeight = 500;
+  const [chartData, setChartData] = useState(null);
 
   useEffect(() => {
-    const margin = { top: 60, right: 40, bottom: 88, left: 150 };
-    const innerWidth = svgWidth - margin.left - margin.right;
-    const innerHeight = svgHeight - margin.top - margin.bottom;
+    // Take only the first 5 entries for initial display
+    const data = filteredData.slice(0, 10);
+    const labels = ["Highest High", "Lowest Low After"];
 
-    const svg = d3
-      .select(svgRef.current)
-      .attr("width", svgWidth)
-      .attr("height", svgHeight);
+    const datasets = data.map((item, index) => {
+      const color = getRandomColor();
+      return {
+        label: item["Coinname + Ticker"],
+        data: [
+          { x: "Highest High", y: Number(item["MC at Highest High"]) },
+          { x: "Lowest Low After", y: Number(item["MC at Lowest Low After"]) },
+        ],
+        borderColor: color,
+        backgroundColor: color,
+      };
+    });
 
-    // Clear existing content
-    svg.selectAll("*").remove();
-
-    const xScale = d3
-      .scalePoint()
-      .domain(["Lowest Low Before", "Highest High"]) // Positions on x-axis
-      .range([0, innerWidth]);
-
-    // Get all MC values as numbers for scaling
-    const mcValues = filteredData.flatMap((d) => [
-      Number(d["MC at Lowest Low After"]),
-      Number(d["MC at Highest High"]),
-    ]);
-
-    const yScale = d3
-      .scaleLinear()
-      .domain([Math.min(...mcValues), Math.max(...mcValues)]) // min to max range
-      .range([0, innerHeight]); // Reversed range for y-scale
-
-    const g = svg
-      .append("g")
-      .attr("transform", `translate(${margin.left},${margin.top})`);
-
-    const xAxis = d3.axisBottom(xScale).tickPadding(60);
-    const yAxis = d3.axisLeft(yScale).tickPadding(60);
-
-    g.append("g").call(yAxis);
-    g.append("g").call(xAxis).attr("transform", `translate(0,${innerHeight})`);
-
-    // Draw lines connecting MC at lowest low before and highest high for each coin
-    filteredData.forEach((d) => {
-      g.append("line")
-        .attr("x1", xScale("Lowest Low Before"))
-        .attr("x2", xScale("Highest High"))
-        .attr("y1", yScale(Number(d["MC at Lowest Low After"])))
-        .attr("y2", yScale(Number(d["MC at Highest High"])))
-        .attr("stroke", "steelblue")
-        .attr("stroke-width", 2);
-
-      // Add coin labels at both ends of the line
-      g.append("text")
-        .attr("x", xScale("Lowest Low Before"))
-        .attr("y", yScale(Number(d["MC at Lowest Low After"])) + 15) // adjusted text position below the point
-        .attr("text-anchor", "end")
-        .text(d["Coinname + Ticker"]);
-
-      g.append("text")
-        .attr("x", xScale("Highest High"))
-        .attr("y", yScale(Number(d["MC at Highest High"])) + 15) // adjusted text position below the point
-        .attr("text-anchor", "start")
-        .text(d["Coinname + Ticker"]);
+    setChartData({
+      labels: labels,
+      datasets: datasets,
     });
   }, [filteredData]);
 
-  return <svg ref={svgRef}></svg>;
+  // Function to generate random colors
+  const getRandomColor = () => {
+    return "#" + Math.floor(Math.random() * 16777215).toString(16);
+  };
+
+  // Chart.js options
+  const options = {
+    scales: {
+      x: {
+        type: "category",
+      },
+      y: {
+        type: "linear",
+        beginAtZero: false,
+      },
+    },
+    plugins: {
+      legend: {
+        display: true,
+      },
+    },
+  };
+
+  return (
+    <div>
+      <div className="text-3xl text-center mb-2">
+        MC of chosen coins from top to low
+      </div>
+      <div className="flex items-center gap-3">
+        <div className="flex flex-col items-center w-full">
+          {chartData && <Line data={chartData} options={options} />}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default SlopeChart;

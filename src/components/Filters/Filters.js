@@ -51,7 +51,7 @@ const Filters = ({
   }, []);
 
   return (
-    <div className="input-group w-full flex gap-5 sticky top-0 bg-white h-20 items-center">
+    <div className="z-20 input-group w-full flex gap-5 sticky top-0 bg-white h-20 items-center">
       <div className="input-container w-full">
         <label htmlFor="hauptkategories" className="text-black">
           Haupt Kategories

@@ -26,14 +26,13 @@ const PrcntDwnFlScatter = ({
 
   return (
     <div>
-      <div className="text-3xl text-center">
+      <div className="text-3xl text-center mb-2">
         Percentage of downfall by Coins
       </div>
       <div className="flex items-center gap-3">
         <div className="flex flex-col items-center w-full">
           <ScatterPlotChart filteredData={filteredData} />
         </div>
-        {/* <Legend /> */}
       </div>
     </div>
   );

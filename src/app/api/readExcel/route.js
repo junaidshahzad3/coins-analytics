@@ -34,7 +34,7 @@ export async function GET(req, res) {
     });
 
     // Fix dates in the data
-    const fixedData = data.map((row, index) => {
+    const fixedData = data?.map((row, index) => {
       const newRow = { ...row };
 
       Object.keys(newRow).forEach((key) => {

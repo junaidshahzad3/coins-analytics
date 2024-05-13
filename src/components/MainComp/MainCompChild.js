@@ -20,66 +20,75 @@ const MainCompChild = () => {
   const [selectedHauptKategories, setSelectedHauptKategories] = useState([]);
 
   return (
-    <div className="w-full h-full flex flex-col px-6 ">
-      <Filters
-        selectedCoins={selectedCoins}
-        setSelectedCoins={setSelectedCoins}
-        selectedMCGruppes={selectedMCGruppes}
-        setSelectedMCGruppes={setSelectedMCGruppes}
-        selectedHauptKategories={selectedHauptKategories}
-        setSelectedHauptKategories={setSelectedHauptKategories}
-      />
-      <XAnstiegGrpd
-        selectedMCGruppes={selectedMCGruppes}
-        selectedHauptKategories={selectedHauptKategories}
-        selectedCoins={selectedCoins}
-      />
-      <XAnstiegCmprdBTC />
-      <PrcntDwnFlGrpd
-        selectedMCGruppes={selectedMCGruppes}
-        selectedHauptKategories={selectedHauptKategories}
-      />
-      <PrcntDwnFlGrpdCmprdBTC />
-      <XAntiegByCoins
-        selectedCoins={selectedCoins}
-        selectedMCGruppes={selectedMCGruppes}
-        selectedHauptKategories={selectedHauptKategories}
-      />
-      <TopByCoins
-        selectedCoins={selectedCoins}
-        selectedMCGruppes={selectedMCGruppes}
-        selectedHauptKategories={selectedHauptKategories}
-      />
-      <PrcntDwnFlScatter
-        selectedCoins={selectedCoins}
-        selectedMCGruppes={selectedMCGruppes}
-        selectedHauptKategories={selectedHauptKategories}
-      />
-      <PrcntDwnFlCombined
-        selectedCoins={selectedCoins}
-        selectedMCGruppes={selectedMCGruppes}
-        selectedHauptKategories={selectedHauptKategories}
-      />
-      <MCLowTop
-        selectedCoins={selectedCoins}
-        selectedMCGruppes={selectedMCGruppes}
-        selectedHauptKategories={selectedHauptKategories}
-      />
-      <RankLowTop
-        selectedCoins={selectedCoins}
-        selectedMCGruppes={selectedMCGruppes}
-        selectedHauptKategories={selectedHauptKategories}
-      />
-      <MCTopLow
-        selectedCoins={selectedCoins}
-        selectedMCGruppes={selectedMCGruppes}
-        selectedHauptKategories={selectedHauptKategories}
-      />
-      <RankTopLow
-        selectedCoins={selectedCoins}
-        selectedMCGruppes={selectedMCGruppes}
-        selectedHauptKategories={selectedHauptKategories}
-      />
+    <div className="flex justify-center w-full">
+      <div className="w-full h-full max-w-[1600px] flex flex-col px-6 gap-10">
+        <Filters
+          selectedCoins={selectedCoins}
+          setSelectedCoins={setSelectedCoins}
+          selectedMCGruppes={selectedMCGruppes}
+          setSelectedMCGruppes={setSelectedMCGruppes}
+          selectedHauptKategories={selectedHauptKategories}
+          setSelectedHauptKategories={setSelectedHauptKategories}
+        />
+        <XAnstiegGrpd
+          selectedMCGruppes={selectedMCGruppes}
+          selectedHauptKategories={selectedHauptKategories}
+          selectedCoins={selectedCoins}
+        />
+        <XAnstiegCmprdBTC />
+        <PrcntDwnFlGrpd
+          selectedMCGruppes={selectedMCGruppes}
+          selectedHauptKategories={selectedHauptKategories}
+          selectedCoins={selectedCoins}
+        />
+        <PrcntDwnFlGrpdCmprdBTC
+          selectedMCGruppes={selectedMCGruppes}
+          selectedHauptKategories={selectedHauptKategories}
+          selectedCoins={selectedCoins}
+        />
+        <XAntiegByCoins
+          selectedMCGruppes={selectedMCGruppes}
+          selectedHauptKategories={selectedHauptKategories}
+          selectedCoins={selectedCoins}
+        />
+        <TopByCoins
+          selectedMCGruppes={selectedMCGruppes}
+          selectedHauptKategories={selectedHauptKategories}
+          selectedCoins={selectedCoins}
+        />
+        <PrcntDwnFlScatter
+          selectedMCGruppes={selectedMCGruppes}
+          selectedHauptKategories={selectedHauptKategories}
+          selectedCoins={selectedCoins}
+        />
+        <PrcntDwnFlCombined
+          selectedMCGruppes={selectedMCGruppes}
+          selectedHauptKategories={selectedHauptKategories}
+          selectedCoins={selectedCoins}
+        />
+        <div className="grid grid-cols-2 gap-4">
+          <MCLowTop
+            selectedCoins={selectedCoins}
+            selectedMCGruppes={selectedMCGruppes}
+            selectedHauptKategories={selectedHauptKategories}
+          />
+          <RankLowTop
+            selectedCoins={selectedCoins}
+            selectedMCGruppes={selectedMCGruppes}
+            selectedHauptKategories={selectedHauptKategories}
+          />
+          <MCTopLow
+            selectedCoins={selectedCoins}
+            selectedMCGruppes={selectedMCGruppes}
+            selectedHauptKategories={selectedHauptKategories}
+          />
+          <RankTopLow
+            selectedCoins={selectedCoins}
+            selectedMCGruppes={selectedMCGruppes}
+            selectedHauptKategories={selectedHauptKategories}
+          />
+        </div>
+      </div>
     </div>
   );
 };

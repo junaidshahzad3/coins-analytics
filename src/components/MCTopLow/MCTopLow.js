@@ -25,15 +25,9 @@ const MCTopLow = ({
   }, [selectedCoins]);
 
   return (
-    <div>
-      <div className="text-3xl text-center">
-        MC of choosen coins from top to low
-      </div>
-      <div className="flex items-center gap-3">
-        <div className="flex flex-col items-center w-full">
-          <SlopeChart filteredData={filteredData} />
-        </div>
-        {/* <Legend /> */}
+    <div className="flex items-center gap-3">
+      <div className="flex flex-col items-center w-full h-[30rem] border border-slate-200 shadow-lg rounded-xl p-4">
+        <SlopeChart filteredData={filteredData} />
       </div>
     </div>
   );
