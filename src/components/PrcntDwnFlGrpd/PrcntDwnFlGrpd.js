@@ -29,7 +29,7 @@ const PrcntDwnFlGrpd = ({
   return (
     <div>
       <div className="text-3xl text-center mb-2">
-        Percentage of downfall grouped
+        Abfälle - Top to Low Zyklus 2018-2022
       </div>
       <div className="flex flex-col justify-center items-center gap-3">
         <div className="flex flex-col lg:flex-row gap-4 items-center w-full">

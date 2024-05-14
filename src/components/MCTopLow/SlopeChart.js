@@ -53,9 +53,7 @@ const SlopeChart = ({ filteredData }) => {
 
   return (
     <div>
-      <div className="text-3xl text-center mb-2">
-        MC of chosen coins from top to low
-      </div>
+      <div className="text-3xl text-center mb-2">Market Cap Top - Low</div>
       <div className="flex items-center gap-3">
         <div className="flex flex-col items-center w-full">
           {chartData && <Line data={chartData} options={options} />}

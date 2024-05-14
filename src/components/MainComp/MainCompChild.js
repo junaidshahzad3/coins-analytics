@@ -13,6 +13,7 @@ import MCTopLow from "../MCTopLow/MCTopLow";
 import RankTopLow from "../RankTopLow/RankTopLow";
 import RankLowTop from "../RankLowTop/RankLowTop";
 import PrcntDwnFlCombined from "../PrcntDwnFlCombined/PrcntDwnFlCombined";
+import InfoCards from "../InfoCards/InfoCards";
 
 const MainCompChild = () => {
   const [selectedCoins, setSelectedCoins] = useState([]);
@@ -30,6 +31,7 @@ const MainCompChild = () => {
           selectedHauptKategories={selectedHauptKategories}
           setSelectedHauptKategories={setSelectedHauptKategories}
         />
+        <InfoCards />
         <XAnstiegGrpd
           selectedMCGruppes={selectedMCGruppes}
           selectedHauptKategories={selectedHauptKategories}

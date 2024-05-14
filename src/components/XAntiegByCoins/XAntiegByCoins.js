@@ -26,7 +26,9 @@ const XAntiegByCoins = ({
 
   return (
     <div>
-      <div className="text-3xl text-center mb-2">X Anstieg by Coins</div>
+      <div className="text-3xl text-center mb-2">
+        X Anstiege Low - Top Zyklus 2018-2022
+      </div>
       <div className="flex items-center gap-3">
         <div className="flex flex-col items-center w-full">
           <ScatterPlotChart filteredData={filteredData} />
