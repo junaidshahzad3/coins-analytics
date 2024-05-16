@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { processData } from "./processData";
-import studyData from "../../data/Study.json";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 
@@ -9,14 +8,14 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PieChart = ({ filteredData }) => {
   const ref = useRef();
-  const [processedData, setProcessedData] = useState(studyData || []);
+  const [processedData, setProcessedData] = useState(filteredData || []);
 
   //Change the charts data when the any filter is applied filter
   useEffect(() => {
     setProcessedData(processData(filteredData));
   }, [filteredData]);
 
-  const [data, setData] = useState({
+  const [chartData, setChartData] = useState({
     labels: processedData.map((item) => item.name) || [],
     datasets: [
       {
@@ -29,7 +28,7 @@ const PieChart = ({ filteredData }) => {
     ],
   });
   useEffect(() => {
-    setData({
+    setChartData({
       labels: processedData.map((item) => item.name) || [],
       datasets: [
         {
@@ -43,7 +42,7 @@ const PieChart = ({ filteredData }) => {
     });
   }, [processedData]);
 
-  return <Pie data={data} />;
+  return <Pie data={chartData} />;
 };
 
 // Function to get unique categories

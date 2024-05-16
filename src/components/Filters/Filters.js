@@ -4,7 +4,6 @@ import { getUniqueCoins } from "@/utils/getUniqueCoins";
 import { getUniqueMCGruppes } from "@/utils/getUniqueMCGruppes";
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
-// import studyData from "../../data/Study.json";
 
 const Filters = ({
   data,

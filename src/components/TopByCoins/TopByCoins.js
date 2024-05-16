@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import ScatterPlotChart from "./ScatterPlotChart";
-// import studyData from "../../data/Study.json";
 import { applyHauptFilter } from "@/utils/applyHauptFilter";
 import { applyMCGruppeFilter } from "@/utils/applyMCGruppeFilter";
 import { applyCoinsFilter } from "@/utils/applyCoinsFilter";
@@ -12,17 +11,20 @@ const TopByCoins = ({
   selectedHauptKategories,
 }) => {
   const [filteredData, setFilteredData] = useState(data || []);
+  useEffect(() => {
+    setFilteredData(data);
+  }, [data]);
 
   useEffect(() => {
-    applyHauptFilter(setFilteredData, selectedHauptKategories);
+    applyHauptFilter(data, setFilteredData, selectedHauptKategories);
   }, [selectedHauptKategories]);
 
   useEffect(() => {
-    applyMCGruppeFilter(setFilteredData, selectedMCGruppes);
+    applyMCGruppeFilter(data, setFilteredData, selectedMCGruppes);
   }, [selectedMCGruppes]);
 
   useEffect(() => {
-    applyCoinsFilter(setFilteredData, selectedCoins);
+    applyCoinsFilter(data, setFilteredData, selectedCoins);
   }, [selectedCoins]);
 
   return (

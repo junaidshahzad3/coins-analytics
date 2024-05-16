@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import studyData from "../../data/Study.json";
 
 const calculateStatistics = (data) => {
   const btcData = data?.find((d) => d.Symbol === "BTC");
@@ -70,7 +69,6 @@ const InfoCards = ({ data }) => {
 
   useEffect(() => {
     const calculatedStats = calculateStatistics(data);
-    // const calculatedStats = calculateStatistics(studyData);
     setStats(calculatedStats);
   }, [data]);
 

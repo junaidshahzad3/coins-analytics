@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { processData } from "./processData";
-import studyData from "../../data/Study.json";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -24,7 +23,7 @@ ChartJS.register(
 
 const BarChart = ({ filteredData }) => {
   const ref = useRef();
-  const [processedData, setProcessedData] = useState(studyData || []);
+  const [processedData, setProcessedData] = useState(filteredData || []);
 
   //Change the charts data when the any filter is applied filter
   useEffect(() => {
@@ -48,7 +47,7 @@ const BarChart = ({ filteredData }) => {
       },
     },
   };
-  const [data, setData] = useState({
+  const [chartData, setChartData] = useState({
     labels: processedData.map((item) => item.name) || [],
     datasets: [
       {
@@ -60,7 +59,7 @@ const BarChart = ({ filteredData }) => {
     ],
   });
   useEffect(() => {
-    setData({
+    setChartData({
       labels: processedData.map((item) => item.name) || [],
       datasets: [
         {
@@ -73,7 +72,7 @@ const BarChart = ({ filteredData }) => {
     });
   }, [processedData]);
 
-  return <Bar options={options} data={data} />;
+  return <Bar options={options} data={chartData} />;
 };
 
 export default BarChart;

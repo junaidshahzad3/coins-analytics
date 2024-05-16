@@ -1,10 +1,8 @@
-import studyData from "../data/Study.json";
-
-export const applyCoinsFilter = (setData, selectedCoins) => {
+export const applyCoinsFilter = (originalData, setData, selectedCoins) => {
   if (selectedCoins?.length > 0) {
     const coinsValues = selectedCoins.map((option) => option.value);
 
-    const tempFilteredData = studyData.filter((item) => {
+    const tempFilteredData = originalData.filter((item) => {
       const matchesCoins =
         coinsValues.length === 0 || coinsValues.includes(item["Coin"]);
       return matchesCoins; // Both conditions must be true
@@ -12,6 +10,6 @@ export const applyCoinsFilter = (setData, selectedCoins) => {
 
     setData(tempFilteredData);
   } else {
-    setData(studyData);
+    setData(originalData);
   }
 };

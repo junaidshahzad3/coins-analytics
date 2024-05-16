@@ -1,19 +1,18 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { processData } from "./processData";
-import studyData from "../../data/Study.json";
 import { Pie } from "react-chartjs-2";
 
 const PieChart = ({ filteredData, filter }) => {
   const ref = useRef();
-  const [processedData, setProcessedData] = useState(studyData || []);
+  const [processedData, setProcessedData] = useState(filteredData || []);
 
   //Change the charts data when the any filter is applied filter
   useEffect(() => {
     setProcessedData(processData(filteredData, filter));
-  }, [filteredData]);
+  }, [filteredData, filter]);
 
-  const [data, setData] = useState({
+  const [chartData, setChartData] = useState({
     labels: processedData.map((item) => item.name) || [],
     datasets: [
       {
@@ -26,7 +25,7 @@ const PieChart = ({ filteredData, filter }) => {
     ],
   });
   useEffect(() => {
-    setData({
+    setChartData({
       labels: processedData.map((item) => item.name) || [],
       datasets: [
         {
@@ -40,7 +39,7 @@ const PieChart = ({ filteredData, filter }) => {
     });
   }, [processedData]);
 
-  return <Pie data={data} />;
+  return <Pie data={chartData} />;
 };
 
 // Function to get unique categories

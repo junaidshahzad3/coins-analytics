@@ -1,6 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-// import studyData from "../../data/Study.json";
-// import btcData from "../../data/BTC-USD.json";
 import { applyHauptFilter } from "@/utils/applyHauptFilter";
 import { applyMCGruppeFilter } from "@/utils/applyMCGruppeFilter";
 import { applyCoinsFilter } from "@/utils/applyCoinsFilter";
@@ -19,6 +17,10 @@ const PrcntDwnFlCombined = ({
   const scatterRef = useRef(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const resizeObserverRef = useRef(null);
+
+  useEffect(() => {
+    setFilteredData(data);
+  }, [data]);
 
   useEffect(() => {
     // Handler to update dimensions
@@ -44,15 +46,15 @@ const PrcntDwnFlCombined = ({
   }, [scatterRef, setDimensions]);
 
   useEffect(() => {
-    applyHauptFilter(setFilteredData, selectedHauptKategories);
+    applyHauptFilter(data, setFilteredData, selectedHauptKategories);
   }, [selectedHauptKategories]);
 
   useEffect(() => {
-    applyMCGruppeFilter(setFilteredData, selectedMCGruppes);
+    applyMCGruppeFilter(data, setFilteredData, selectedMCGruppes);
   }, [selectedMCGruppes]);
 
   useEffect(() => {
-    applyCoinsFilter(setFilteredData, selectedCoins);
+    applyCoinsFilter(data, setFilteredData, selectedCoins);
   }, [selectedCoins]);
 
   return (

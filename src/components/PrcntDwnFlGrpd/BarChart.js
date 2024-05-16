@@ -1,17 +1,16 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { processData } from "./processData";
-import studyData from "../../data/Study.json";
 import { Bar } from "react-chartjs-2";
 
 const BarChart = ({ filteredData, filter }) => {
   const ref = useRef();
-  const [processedData, setProcessedData] = useState(studyData || []);
+  const [processedData, setProcessedData] = useState(filteredData || []);
 
   //Change the charts data when the any filter is applied filter
   useEffect(() => {
     setProcessedData(processData(filteredData, filter).reverse());
-  }, [filteredData]);
+  }, [filteredData, filter]);
 
   const options = {
     indexAxis: "y", // Define horizontal bar chart
@@ -30,7 +29,7 @@ const BarChart = ({ filteredData, filter }) => {
       },
     },
   };
-  const [data, setData] = useState({
+  const [chartData, setChartData] = useState({
     labels: processedData.map((item) => item.name) || [],
     datasets: [
       {
@@ -42,7 +41,7 @@ const BarChart = ({ filteredData, filter }) => {
     ],
   });
   useEffect(() => {
-    setData({
+    setChartData({
       labels: processedData.map((item) => item.name) || [],
       datasets: [
         {
@@ -55,6 +54,6 @@ const BarChart = ({ filteredData, filter }) => {
     });
   }, [processedData]);
 
-  return <Bar options={options} data={data} />;
+  return <Bar options={options} data={chartData} />;
 };
 export default BarChart;

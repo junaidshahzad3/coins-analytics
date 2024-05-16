@@ -1,19 +1,18 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import studyData from "../../data/Study.json";
 import { processData } from "./processData";
 import { Pie } from "react-chartjs-2";
 
-const PieChart = ({ filteredData }) => {
+const PieChart = ({ data }) => {
   const ref = useRef();
-  const [processedData, setProcessedData] = useState(studyData || []);
+  const [processedData, setProcessedData] = useState(data || []);
 
   //Change the charts data when the any filter is applied filter
   useEffect(() => {
-    setProcessedData(processData(filteredData));
-  }, [filteredData]);
+    setProcessedData(processData(data));
+  }, [data]);
 
-  const [data, setData] = useState({
+  const [chartData, setChartData] = useState({
     labels: processedData.map((item) => item.name) || [],
     datasets: [
       {
@@ -26,7 +25,7 @@ const PieChart = ({ filteredData }) => {
     ],
   });
   useEffect(() => {
-    setData({
+    setChartData({
       labels: processedData.map((item) => item.name) || [],
       datasets: [
         {
@@ -40,7 +39,7 @@ const PieChart = ({ filteredData }) => {
     });
   }, [processedData]);
 
-  return <Pie data={data} />;
+  return <Pie data={chartData} />;
 };
 
 export default PieChart;

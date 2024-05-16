@@ -1,10 +1,12 @@
-import studyData from "../data/Study.json";
-
-export const applyMCGruppeFilter = (setData, selectedMCGruppes) => {
+export const applyMCGruppeFilter = (
+  originalData,
+  setData,
+  selectedMCGruppes
+) => {
   if (selectedMCGruppes?.length > 0) {
     const mcGruppesValues = selectedMCGruppes.map((option) => option.value);
 
-    const tempFilteredData = studyData.filter((item) => {
+    const tempFilteredData = originalData.filter((item) => {
       const matchesMCGruppe =
         mcGruppesValues.length === 0 ||
         mcGruppesValues.includes(item["MC Gruppe"]);
@@ -14,6 +16,6 @@ export const applyMCGruppeFilter = (setData, selectedMCGruppes) => {
 
     setData(tempFilteredData);
   } else {
-    setData(studyData);
+    setData(originalData);
   }
 };
