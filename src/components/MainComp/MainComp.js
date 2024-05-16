@@ -1,18 +1,38 @@
-import { getExcelData } from "@/app/api/readExcel/getExcelData";
+// src/components/MainComp/MainComp.js
+"use client";
+
+import { useEffect, useState } from "react";
 import MainCompChild from "./MainCompChild";
+import { getExcelData } from "@/app/api/readExcel/getExcelData";
 import { getCSVData } from "@/app/api/readCSV/getCSVData";
 
-export default async function MainComp() {
-  let data = await getExcelData();
-  let btcData = await getCSVData();
+export default function MainComp() {
+  const [data, setData] = useState(null);
+  const [btcData, setBtcData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  return (
-    // <>
-    //   {data && btcData && btcData?.length > 0 && data?.length > 0 ? (
-    <MainCompChild data={data} btcData={btcData} />
-    //   ) : (
-    //     <>Loading...</>
-    //   )}
-    // </>
-  );
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const [excelData, csvData] = await Promise.all([
+          getExcelData(),
+          getCSVData(),
+        ]);
+        setData(excelData);
+        setBtcData(csvData);
+        setLoading(false);
+      } catch (err) {
+        setError(err);
+        setLoading(false);
+      }
+    }
+
+    fetchData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error loading data</div>;
+
+  return <MainCompChild data={data} btcData={btcData} />;
 }
