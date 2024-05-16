@@ -2,17 +2,18 @@
 import React, { useEffect, useState } from "react";
 import PieChart from "./PieChart";
 import BarChart from "./BarChart";
-import studyData from "../../data/Study.json";
+// import studyData from "../../data/Study.json";
 import { applyHauptFilter } from "@/utils/applyHauptFilter";
 import { applyMCGruppeFilter } from "@/utils/applyMCGruppeFilter";
 import { applyCoinsFilter } from "@/utils/applyCoinsFilter";
 
 const PrcntDwnFlGrpd = ({
+  data,
   selectedMCGruppes,
   selectedHauptKategories,
   selectedCoins,
 }) => {
-  const [filteredData, setFilteredData] = useState(studyData || []);
+  const [filteredData, setFilteredData] = useState(data || []);
 
   useEffect(() => {
     applyHauptFilter(setFilteredData, selectedHauptKategories);

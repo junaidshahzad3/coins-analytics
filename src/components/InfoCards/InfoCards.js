@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import studyData from "../../data/Study.json";
+// import studyData from "../../data/Study.json";
 
 const calculateStatistics = (data) => {
-  const btcData = data.find((d) => d.Symbol === "BTC");
+  const btcData = data?.find((d) => d.Symbol === "BTC");
 
   // Parse and filter numeric values
   const xAnstiege = data
-    .map((d) => parseFloat(d["X Anstieg"]))
+    ?.map((d) => parseFloat(d["X Anstieg"]))
     .filter((value) => !isNaN(value));
   const abfaelle = data
-    .map((d) => parseFloat(d["Percentage of Downfall"]))
+    ?.map((d) => parseFloat(d["Percentage of Downfall"]))
     .filter((value) => !isNaN(value));
 
   // Calculate averages
@@ -65,13 +65,14 @@ const calculateStatistics = (data) => {
   };
 };
 
-const InfoCards = () => {
+const InfoCards = ({ data }) => {
   const [stats, setStats] = useState({});
 
   useEffect(() => {
-    const calculatedStats = calculateStatistics(studyData);
+    const calculatedStats = calculateStatistics(data);
+    // const calculatedStats = calculateStatistics(studyData);
     setStats(calculatedStats);
-  }, []);
+  }, [data]);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-6 gap-4">

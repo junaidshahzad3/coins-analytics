@@ -4,9 +4,10 @@ import { getUniqueCoins } from "@/utils/getUniqueCoins";
 import { getUniqueMCGruppes } from "@/utils/getUniqueMCGruppes";
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
-import studyData from "../../data/Study.json";
+// import studyData from "../../data/Study.json";
 
 const Filters = ({
+  data,
   selectedCoins,
   setSelectedCoins,
   selectedMCGruppes,
@@ -16,35 +17,35 @@ const Filters = ({
 }) => {
   const [hauptKategorieOptions, setHauptKategorieOptions] = useState(
     async () => {
-      const temp = await getUniqueCategories(studyData);
+      const temp = await getUniqueCategories(data);
       return temp || [];
     }
   );
   const [MCGruppesOptions, setMCGruppesOptions] = useState(async () => {
-    const temp = await getUniqueMCGruppes(studyData);
+    const temp = await getUniqueMCGruppes(data);
     return temp || [];
   });
   const [coinsOptions, setCoinsOptions] = useState(async () => {
-    const temp = await getUniqueCoins(studyData);
+    const temp = await getUniqueCoins(data);
     return temp || [];
   });
 
   //set the unique categories to the HauptKategorieOptions and MC Gruppe state
   useEffect(() => {
     const fetchHauptKategorieData = async () => {
-      const temp = await getUniqueCategories(studyData);
+      const temp = await getUniqueCategories(data);
       setHauptKategorieOptions(temp); // Set unique Select options
     };
     fetchHauptKategorieData(); // Fetch the data when the component mounts
 
     const fetchMCGruppeData = async () => {
-      const temp = await getUniqueMCGruppes(studyData);
+      const temp = await getUniqueMCGruppes(data);
       setMCGruppesOptions(temp); // Set unique Select options
     };
     fetchMCGruppeData(); // Fetch the data when the component mounts
 
     const fetchCoinsData = async () => {
-      const temp = await getUniqueCoins(studyData);
+      const temp = await getUniqueCoins(data);
       setCoinsOptions(temp); // Set unique Select options
     };
     fetchCoinsData(); // Fetch the data when the component mounts
@@ -58,7 +59,7 @@ const Filters = ({
         </label>
         <Select
           id="hauptkategories"
-          closeMenuOnSelect={false}
+          closeMenuOnSelect
           isMulti
           options={hauptKategorieOptions || []}
           value={selectedHauptKategories}
@@ -72,7 +73,7 @@ const Filters = ({
         </label>
         <Select
           id="mcgruppe"
-          closeMenuOnSelect={false}
+          closeMenuOnSelect
           isMulti
           options={MCGruppesOptions || []}
           value={selectedMCGruppes}
@@ -86,7 +87,7 @@ const Filters = ({
         </label>
         <Select
           id="coins"
-          closeMenuOnSelect={false}
+          closeMenuOnSelect
           isMulti
           options={coinsOptions || []}
           value={selectedCoins}

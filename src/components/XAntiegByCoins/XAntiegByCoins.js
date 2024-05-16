@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import ScatterPlotChart from "./ScatterPlotChart";
-import studyData from "../../data/Study.json";
+// import studyData from "../../data/Study.json";
 import { applyHauptFilter } from "@/utils/applyHauptFilter";
 import { applyMCGruppeFilter } from "@/utils/applyMCGruppeFilter";
 import { applyCoinsFilter } from "@/utils/applyCoinsFilter";
 
 const XAntiegByCoins = ({
+  data,
   selectedCoins,
   selectedMCGruppes,
   selectedHauptKategories,
 }) => {
-  const [filteredData, setFilteredData] = useState(studyData || []);
+  const [filteredData, setFilteredData] = useState(data || []);
 
   useEffect(() => {
     applyHauptFilter(setFilteredData, selectedHauptKategories);

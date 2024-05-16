@@ -49,16 +49,16 @@ export async function GET(req, res) {
       return { ...newRow, index: index };
     });
 
-    // Path for the output JSON file
-    const jsonFilePath = path.join(process.cwd(), "src", "data", "Study.json");
+    // // Path for the output JSON file
+    // const jsonFilePath = path.join(process.cwd(), "src", "data", "Study.json");
 
-    // Check if the JSON file exists and delete it (optional, if you're certain `fs.writeFileSync` will overwrite)
-    if (fs.existsSync(jsonFilePath)) {
-      fs.unlinkSync(jsonFilePath);
-    }
+    // // Check if the JSON file exists and delete it (optional, if you're certain `fs.writeFileSync` will overwrite)
+    // if (fs.existsSync(jsonFilePath)) {
+    //   fs.unlinkSync(jsonFilePath);
+    // }
 
-    // Write the new JSON data to the file
-    fs.writeFileSync(jsonFilePath, JSON.stringify(fixedData, null, 2));
+    // // Write the new JSON data to the file
+    // fs.writeFileSync(jsonFilePath, JSON.stringify(fixedData, null, 2));
 
     // Send data back to client
     return NextResponse.json(fixedData);

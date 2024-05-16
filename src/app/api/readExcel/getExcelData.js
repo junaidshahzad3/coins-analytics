@@ -5,10 +5,15 @@ export async function getExcelData() {
       const jsonData = await response.json();
       return jsonData;
     } else {
-      console.error("Failed to fetch data from Excel");
+      console.log("Failed to fetch data from Excel");
+      return {
+        message: "Failed to fetch data from Excel",
+      };
     }
   } catch (error) {
     console.error(error);
-    return;
+    return {
+      message: "Failed to fetch data from Excel",
+    };
   }
 }

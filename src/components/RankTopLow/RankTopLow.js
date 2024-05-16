@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import SlopeChart from "./SlopeChart";
-import studyData from "../../data/Study.json";
+// import studyData from "../../data/Study.json";
 import { applyHauptFilter } from "@/utils/applyHauptFilter";
 import { applyMCGruppeFilter } from "@/utils/applyMCGruppeFilter";
 import { applyCoinsFilter } from "@/utils/applyCoinsFilter";
 
 const RankTopLow = ({
+  data,
   selectedCoins,
   selectedMCGruppes,
   selectedHauptKategories,
 }) => {
-  const [filteredData, setFilteredData] = useState(studyData || []);
+  const [filteredData, setFilteredData] = useState(data || []);
 
   useEffect(() => {
     applyHauptFilter(setFilteredData, selectedHauptKategories);

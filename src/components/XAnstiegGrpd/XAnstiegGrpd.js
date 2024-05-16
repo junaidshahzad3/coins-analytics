@@ -1,18 +1,19 @@
 "use client";
 import PieChart from "./PieChart";
 import BarChart from "./BarChart";
-import studyData from "../../data/Study.json";
+// import studyData from "../../data/Study.json";
 import { useEffect, useState } from "react";
 import { applyHauptFilter } from "@/utils/applyHauptFilter";
 import { applyMCGruppeFilter } from "@/utils/applyMCGruppeFilter";
 import { applyCoinsFilter } from "@/utils/applyCoinsFilter";
 
 const XAnstiegGrpd = ({
+  data,
   selectedMCGruppes,
   selectedHauptKategories,
   selectedCoins,
 }) => {
-  const [filteredData, setFilteredData] = useState(studyData || []);
+  const [filteredData, setFilteredData] = useState(data);
 
   useEffect(() => {
     applyHauptFilter(setFilteredData, selectedHauptKategories);

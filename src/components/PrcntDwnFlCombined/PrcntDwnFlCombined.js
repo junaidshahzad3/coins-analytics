@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import studyData from "../../data/Study.json";
-import btcData from "../../data/BTC-USD.json";
+// import studyData from "../../data/Study.json";
+// import btcData from "../../data/BTC-USD.json";
 import { applyHauptFilter } from "@/utils/applyHauptFilter";
 import { applyMCGruppeFilter } from "@/utils/applyMCGruppeFilter";
 import { applyCoinsFilter } from "@/utils/applyCoinsFilter";
@@ -8,11 +8,13 @@ import ScatterChart from "./ScatterChart";
 import CandleStickChart from "./CandleStickChart";
 
 const PrcntDwnFlCombined = ({
+  data,
+  btcData,
   selectedCoins,
   selectedMCGruppes,
   selectedHauptKategories,
 }) => {
-  const [filteredData, setFilteredData] = useState(studyData || []);
+  const [filteredData, setFilteredData] = useState(data || []);
   const [showBTCChart, setShowBTCChart] = useState(true);
   const scatterRef = useRef(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });

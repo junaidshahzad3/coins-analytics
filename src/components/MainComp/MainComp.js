@@ -3,8 +3,8 @@ import MainCompChild from "./MainCompChild";
 import { getCSVData } from "@/app/api/readCSV/getCSVData";
 
 export default async function MainComp() {
-  await getExcelData();
-  await getCSVData();
+  const data = await getExcelData();
+  const btcData = await getCSVData();
 
-  return <MainCompChild />;
+  return <MainCompChild data={data} btcData={btcData} />;
 }

@@ -5,10 +5,15 @@ export async function getCSVData() {
       const jsonData = await response.json();
       return jsonData;
     } else {
-      console.error("Failed to fetch data from csv");
+      console.log("Failed to fetch data from csv");
+      return {
+        message: "Failed to fetch data from csv",
+      };
     }
   } catch (error) {
     console.error(error);
-    return;
+    return {
+      message: "Failed to fetch data from csv",
+    };
   }
 }
