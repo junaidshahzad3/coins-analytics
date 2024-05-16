@@ -6,5 +6,13 @@ export default async function MainComp() {
   const data = await getExcelData();
   const btcData = await getCSVData();
 
-  return <MainCompChild data={data} btcData={btcData} />;
+  return (
+    <>
+      {data && btcData && btcData.length > 0 && data.length > 0 ? (
+        <MainCompChild data={data} btcData={btcData} />
+      ) : (
+        <>Loading...</>
+      )}
+    </>
+  );
 }
