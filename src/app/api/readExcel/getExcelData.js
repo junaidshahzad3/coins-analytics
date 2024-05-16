@@ -8,6 +8,6 @@ export async function getExcelData() {
     return jsonData;
   } catch (error) {
     console.error("Failed to fetch data from Excel: ", error);
-    // Handle the error appropriately here
+    // Handle the error appropriately Here
   }
 }
