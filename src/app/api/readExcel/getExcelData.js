@@ -1,6 +1,6 @@
 export async function getExcelData() {
   try {
-    const response = await fetch("http://localhost:3000/api/readExcel");
+    const response = await fetch("/api/readExcel");
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
